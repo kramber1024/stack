@@ -31,7 +31,6 @@ void Stack::Push(int num)
 	
 	if (head->empty)
 	{
-		cout << "first: " << num << endl;
 		head = newElement;
 	}
 	else
