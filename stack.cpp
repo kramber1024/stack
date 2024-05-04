@@ -54,7 +54,9 @@ int Stack::Pop()
 	int length = Length();
 
 	int value = head->value;
+	element* temporaryElement = head;
 	head = head->next;
+	delete temporaryElement;
 
 	if (length == 1)
 	{
