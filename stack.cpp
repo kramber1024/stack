@@ -14,6 +14,7 @@ Stack::Stack()
 Stack::~Stack()
 {
 	element* temporaryElement;
+
 	while (head->next != 0)
 	{
 		temporaryElement = head;
@@ -57,7 +58,7 @@ int Stack::Pop()
 
 bool Stack::Empty()
 {
-	if (head->empty)
+	if (head->next == 0)
 	{
 		return true;
 	}
