@@ -10,9 +10,9 @@ private:
 	{
 		int value;
 		element* next;
-		bool empty = false;
 	};
 	element* head;
+	bool empty;
 
 public:
 	Stack();

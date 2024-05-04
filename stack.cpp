@@ -8,18 +8,21 @@ Stack::Stack()
 	head = new element;
 	head->value = 0;
 	head->next = 0;
-	head->empty = true;
+	empty = true;
 }
 
 Stack::~Stack()
 {
-	element* temporaryElement;
-
-	while (head->next != 0)
+	if (!Empty())
 	{
-		temporaryElement = head;
-		head = head->next;
-		delete temporaryElement;
+		element* temporaryElement;
+
+		while (head->next != 0)
+		{
+			temporaryElement = head;
+			head = head->next;
+			delete temporaryElement;
+		}
 	}
 	delete head;
 }
@@ -30,15 +33,17 @@ void Stack::Push(int num)
 	newElement->next = 0;
 	newElement->value = num;
 	
-	if (head->empty)
+	if (empty)
 	{
 		head = newElement;
+		empty = false;
 	}
 	else
 	{
 		newElement->next = head;
 		head = newElement;
 	}
+	delete newElement;
 }
 
 int Stack::Pop()
@@ -47,22 +52,25 @@ int Stack::Pop()
 	{
 		return -1;
 	}
+	int length = Length();
 
 	element* temporaryElement = head;
 	int value = temporaryElement->value;
 	head = head->next;
+
 	delete temporaryElement;
+
+	if (length == 1)
+	{
+		empty = true;
+	}
 
 	return value;
 }
 
 bool Stack::Empty()
 {
-	if (head->next == 0)
-	{
-		return true;
-	}
-	return false;
+	return empty;
 }
 
 int Stack::Length() {
@@ -97,13 +105,16 @@ int Stack::ShowHead()
 }
 
 void Stack::ShowAll()
-{
-	element* temporaryElement = head;
-
-	while (temporaryElement->next != 0)
+{	
+	if (!Empty())
 	{
-		cout << temporaryElement->value << " ";
-		temporaryElement = temporaryElement->next;
+		element* temporaryElement = head;
+
+		while (temporaryElement->next != 0)
+		{
+			cout << temporaryElement->value << " ";
+			temporaryElement = temporaryElement->next;
+		}
+		cout << temporaryElement->value << endl;
 	}
-	cout << temporaryElement->value << endl;
 }
