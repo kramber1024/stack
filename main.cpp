@@ -6,12 +6,15 @@ int main()
 {
 	MyStack stack;
 
-    for (int i = 1; i < 101; i++)
+    for (int i = 1; i < 6; i++)
     {
         stack.Push(i);
     }
-    cout << stack.Length() << endl;
+    cout << "before: ";
     stack.ShowAll();
-    // cout << stack.Get(3) << endl;
-    // stack.ShowAll();
+
+    stack.Set(3, 99);
+    
+    cout << "after: ";
+    stack.ShowAll();
 }
