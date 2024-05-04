@@ -43,7 +43,6 @@ void Stack::Push(int num)
 		newElement->next = head;
 		head = newElement;
 	}
-	delete newElement;
 }
 
 int Stack::Pop()
@@ -54,11 +53,8 @@ int Stack::Pop()
 	}
 	int length = Length();
 
-	element* temporaryElement = head;
-	int value = temporaryElement->value;
+	int value = head->value;
 	head = head->next;
-
-	delete temporaryElement;
 
 	if (length == 1)
 	{
@@ -92,6 +88,24 @@ int Stack::Length() {
 	return length;
 }
 
+bool Stack::Sorted()
+{
+	element* temporaryElement = head;
+    int lastValue = head->value;
+
+	while (temporaryElement->next != 0)
+	{
+		temporaryElement = temporaryElement->next;
+		if (lastValue > temporaryElement->value)
+		{
+			return false;
+		}
+		lastValue = temporaryElement->value;
+	}
+
+	return true;
+}
+
 int Stack::ShowHead()
 {
 	if (Empty())
@@ -105,7 +119,7 @@ int Stack::ShowHead()
 }
 
 void Stack::ShowAll()
-{	
+{
 	if (!Empty())
 	{
 		element* temporaryElement = head;
