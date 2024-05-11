@@ -2,28 +2,29 @@
 
 #include <iostream>
 
+using std::cout, std::endl;
 
-class Stack
+template <typename T> class Stack
 {
-private:
-	struct element 
-	{
-		int value;
-		element* next;
-	};
-	element* head;
-	bool empty;
+	private:
+		struct element 
+		{
+			T value;
+			element* next;
+		};
+		element* head;
+		bool empty;
 
-public:
-	unsigned long long int N_op = 0;
+	public:
+		unsigned long long int N_op = 0;
 
-	Stack();
-	~Stack();
-	void Push(int num);
-	int Pop();
-	bool Empty();
-	int Length();
-    bool Sorted();
-	int ShowHead();
-	void ShowAll();
+		Stack();
+		~Stack();
+		void Push(T num);
+		T Pop();
+		bool Empty();
+		int Length();
+		bool Sorted();
+		T ShowHead();
+		void ShowAll();
 };

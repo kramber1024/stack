@@ -1,9 +1,6 @@
 #include "stack.h"
 
-using namespace std;
-
-
-Stack::Stack()
+template <typename T> Stack<T>::Stack()
 {
 	head = new element;
 	head->value = 0;
@@ -11,7 +8,7 @@ Stack::Stack()
 	empty = true;
 }
 
-Stack::~Stack()
+template <typename T> Stack<T>::~Stack()
 {
 	if (!Empty())
 	{
@@ -27,7 +24,7 @@ Stack::~Stack()
 	delete head;
 }
 
-void Stack::Push(int num)
+template <typename T> void Stack<T>::Push(T num)
 {
 	element* newElement = new element;
 	newElement->next = 0;
@@ -45,7 +42,7 @@ void Stack::Push(int num)
 	}
 }
 
-int Stack::Pop()
+template <typename T> T Stack<T>::Pop()
 {
 	if (Empty())
 	{
@@ -53,7 +50,7 @@ int Stack::Pop()
 	}
 	int length = Length();
 
-	int value = head->value;
+	T value = head->value;
 	element* temporaryElement = head;
 	head = head->next;
 	delete temporaryElement;
@@ -66,12 +63,12 @@ int Stack::Pop()
 	return value;
 }
 
-bool Stack::Empty()
+template <typename T> bool Stack<T>::Empty()
 {
 	return empty;
 }
 
-int Stack::Length() {
+template <typename T> int Stack<T>::Length() {
 	if (Empty())
 	{
 		return 0;
@@ -90,10 +87,10 @@ int Stack::Length() {
 	return length;
 }
 
-bool Stack::Sorted()
+template <typename T> bool Stack<T>::Sorted()
 {
 	element* temporaryElement = head;
-    int lastValue = head->value;
+    T lastValue = head->value;
 
 	while (temporaryElement->next != 0)
 	{
@@ -108,7 +105,7 @@ bool Stack::Sorted()
 	return true;
 }
 
-int Stack::ShowHead()
+template <typename T> T Stack<T>::ShowHead()
 {
 	if (Empty())
 	{
@@ -120,7 +117,7 @@ int Stack::ShowHead()
 	}
 }
 
-void Stack::ShowAll()
+template <typename T> void Stack<T>::ShowAll()
 {
 	if (!Empty())
 	{
