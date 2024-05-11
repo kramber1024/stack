@@ -1,7 +1,6 @@
 ﻿#include "main.h"
 
-using namespace std;
-
+using std::cin, std::cout, std::endl, std::boolalpha;
 
 void simple_test()
 {
@@ -9,7 +8,7 @@ void simple_test()
     cout << "Please, enter number of elements n = ";
     cin >> n;
 
-    MyStack stack;
+    MyStack<int> stack;
 
     for (int i = 0; i < n; i++)
     {
@@ -25,7 +24,7 @@ void simple_test()
 
     cout << "after: ";
     stack.ShowAll();
-    cout << boolalpha << "sorted: " << stack.Sorted() << endl;
+    cout << boolalpha << "sorted: " << stack.Sorted() << "\n" << endl;
 }
 
 void full_test()
@@ -34,7 +33,7 @@ void full_test()
     int j, i;
     for (i = 1; i < 11; i++)
     {
-        MyStack stack;
+        MyStack<int> stack;
 
         for (j = 0; j < i * 100; j++)
         {
@@ -46,9 +45,9 @@ void full_test()
         t_f = GetTickCount64();
 
         cout << "sort #" << i << endl;
-        cout << "number of elements " << i * 100 << endl;
-        cout << "sort time (ms) " << t_f - t_s << endl;
-        cout << "number of operations: " << "NOT_READY" << endl;
+        cout << "number of elements: " << i * 100 << endl;
+        cout << "sort time (ms): " << t_f - t_s << endl;
+        // cout << "number of operations: " << "NOT_READY" << endl;
         cout << endl;
     }
 }
@@ -57,4 +56,6 @@ int main()
 {
     simple_test();
     full_test();
+
+    return 0;
 }
