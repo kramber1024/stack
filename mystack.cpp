@@ -46,7 +46,7 @@ template <typename T> void MyStack<T>::Sort(int n)
         for (int i = gap; i < n; i += 1)
         {
             int j;
-            int temp = Get(i);
+            T temp = Get(i);
 
             for (j = i; j >= gap && Get(j - gap) > temp; j -= gap)
             {
