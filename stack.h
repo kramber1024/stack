@@ -3,6 +3,7 @@
 #include <iostream>
 
 using std::cout, std::endl;
+
 namespace structures
 {
 	template <typename T> class Stack
