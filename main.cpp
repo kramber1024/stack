@@ -1,6 +1,7 @@
 ﻿#include "main.h"
 
 using std::cin, std::cout, std::endl, std::boolalpha;
+using structures::MyStack;
 
 void simple_test()
 {

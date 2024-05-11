@@ -1,5 +1,7 @@
 #include "stack.h"
 
+using namespace structures;
+
 template <typename T> Stack<T>::Stack()
 {
 	head = new element;

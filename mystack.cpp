@@ -1,5 +1,7 @@
 #include "mystack.h"
 
+using namespace structures;
+
 template <typename T> T MyStack<T>::Get(int pos)
 {
     Stack<T> temporaryStack;
