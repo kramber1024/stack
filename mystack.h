@@ -1,12 +1,12 @@
 #pragma once
 
-#include <iostream>
 #include "stack.h"
+#include "stack.cpp"
 
-
-class MyStack : public Stack {
-public:
-    int Get(int pos);
-    void Set(int pos, int num);
-    void Sort(int n);
+template <typename T> class MyStack : public Stack<T>
+{
+    public:
+        T Get(int pos);
+        void Set(int pos, T num);
+        void Sort(int n);
 };

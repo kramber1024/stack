@@ -1,46 +1,43 @@
 #include "mystack.h"
 
-using namespace std;
-
-
-int MyStack::Get(int pos)
+template <typename T> T MyStack<T>::Get(int pos)
 {
-    Stack temporaryStack;
+    Stack<T> temporaryStack;
 
     for (int i = 0; i < pos; i++)
     {
-        temporaryStack.Push(Pop());
+        temporaryStack.Push(this->Pop());
     }
 
-    int result = ShowHead();
+    T result = this->ShowHead();
 
     for (int i = 0; i < pos; i++)
     {
-        Push(temporaryStack.Pop());
+        this->Push(temporaryStack.Pop());
     }
 
     return result;
 }
 
-void MyStack::Set(int pos, int num)
+template <typename T> void MyStack<T>::Set(int pos, T num)
 {
-    Stack temporaryStack;
+    Stack<T> temporaryStack;
 
     for (int i = 0; i < pos; i++)
     {
-        temporaryStack.Push(Pop());
+        temporaryStack.Push(this->Pop());
     }
 
-    Pop();
-    Push(num);
+    this->Pop();
+    this->Push(num);
 
     for (int i = 0; i < pos; i++)
     {
-        Push(temporaryStack.Pop());
+        this->Push(temporaryStack.Pop());
     }
 }
 
-void MyStack::Sort(int n)
+template <typename T> void MyStack<T>::Sort(int n)
 {
     for (int gap = n / 2; gap > 0; gap /= 2)
     {
