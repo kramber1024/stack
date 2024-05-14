@@ -1,15 +1,27 @@
+#include <iostream>
 #include "stack.h"
 
-using namespace structures;
+using std::cout; using std::endl;
 
+/**
+ * @brief Конструктор. Инициализирует класс.
+ * 
+ * @tparam T Тип данных в стеке.
+ */
 template <typename T> Stack<T>::Stack()
 {
 	head = new element;
 	head->value = 0;
 	head->next = 0;
 	empty = true;
+	N_op = 0;
 }
 
+/**
+ * @brief Деструктор. Удаляет все элементы стека из памяти.
+ * 
+ * @tparam T Тип данных в стеке.
+ */
 template <typename T> Stack<T>::~Stack()
 {
 	if (!Empty())
@@ -26,6 +38,12 @@ template <typename T> Stack<T>::~Stack()
 	delete head;
 }
 
+/**
+ * @brief Основной метод. Добавляет новый элемент в стек на верх.
+ * 
+ * @tparam T Тип данных в стеке.
+ * @param num Значение, которое будет храниться в стеке.
+ */
 template <typename T> void Stack<T>::Push(T num)
 {
 	element* newElement = new element;
@@ -44,6 +62,12 @@ template <typename T> void Stack<T>::Push(T num)
 	}
 }
 
+/**
+ * @brief Основной метод. Удаляет верхний элемент в стеке и возвращает его значение.
+ * 
+ * @tparam T Тип данных в стеке.
+ * @return ` T ` верхнее значение в стеке или ` -1 `, если стек пуст.
+ */
 template <typename T> T Stack<T>::Pop()
 {
 	if (Empty())
@@ -65,12 +89,25 @@ template <typename T> T Stack<T>::Pop()
 	return value;
 }
 
+/**
+ * @brief Основной метод. Возвращает пуст ли стек.
+ * 
+ * @tparam T Тип данных в стеке.
+ * @return ` true ` если стек пуст, в противном случае ` false `.
+ */
 template <typename T> bool Stack<T>::Empty()
 {
 	return empty;
 }
 
-template <typename T> int Stack<T>::Length() {
+/**
+ * @brief Основной метод. Вычисляет длину стека и возвращает её.
+ * 
+ * @tparam T Тип данных в стеке.
+ * @return ` int ` Длину стека.
+ */
+template <typename T> int Stack<T>::Length()
+{
 	if (Empty())
 	{
 		return 0;
@@ -89,6 +126,14 @@ template <typename T> int Stack<T>::Length() {
 	return length;
 }
 
+/**
+ * @brief Вспомогательный метод.
+ * 
+ * Проверяет отсортирован ли стек сверху вниз.
+ * 
+ * @tparam T Тип данных в стеке.
+ * @return ` true ` если стек отсортирован сверху вниз, в противном случае ` false `.
+ */
 template <typename T> bool Stack<T>::Sorted()
 {
 	element* temporaryElement = head;
@@ -107,6 +152,14 @@ template <typename T> bool Stack<T>::Sorted()
 	return true;
 }
 
+/**
+ * @brief Основной метод.
+ * 
+ * Возвращает значение верхнего элемента стека.
+ * 
+ * @tparam T Тип данных в стеке.
+ * @return ` T ` верхнее значение в стеке или ` -1 `, если стек пуст.
+ */
 template <typename T> T Stack<T>::ShowHead()
 {
 	if (Empty())
@@ -119,6 +172,13 @@ template <typename T> T Stack<T>::ShowHead()
 	}
 }
 
+/**
+ * @brief Вспомогательный метод.
+ * 
+ * Красиво выводит элементы подряд, сверху вниз стека: `1 2 3`.
+ * 
+ * @tparam T Тип данных в стеке.
+ */
 template <typename T> void Stack<T>::ShowAll()
 {
 	if (!Empty())
