@@ -1,7 +1,8 @@
-﻿#include "main.h"
+﻿#include <iostream>
+#include <windows.h>
+#include "mystack.h"
 
 using std::cin, std::cout, std::endl, std::boolalpha;
-using structures::MyStack;
 
 void simple_test()
 {
@@ -45,10 +46,10 @@ void full_test()
         stack.Sort(stack.Length());
         t_f = GetTickCount64();
 
-        cout << "sort #" << i << endl;
-        cout << "number of elements: " << i * 100 << endl;
-        cout << "sort time (ms): " << t_f - t_s << endl;
-        // cout << "number of operations: " << "NOT_READY" << endl;
+        cout << "sort #" << i << "\n";
+        cout << "number of elements: " << i * 100 << "\n";
+        cout << "sort time (ms): " << t_f - t_s << "\n";
+        cout << "number of operations: " << stack.N_op << "\n";
         cout << endl;
     }
 }
