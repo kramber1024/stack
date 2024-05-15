@@ -15,6 +15,7 @@ template <typename T> class MyStack : public Stack<T>
         T Get(int pos);
         void Set(int pos, T num);
         void Sort(int n);
+        T& operator[](int n);
 };
 
 /**
@@ -74,6 +75,25 @@ template <typename T> void MyStack<T>::Set(int pos, T num)
     {
         this->Push(temporaryStack.Pop());
     }
+}
+
+template <typename T> T& MyStack<T>::operator[](int n)
+{
+    Stack<T> temporaryStack;
+
+    for (int i = 0; i < n; i++)
+    {
+        temporaryStack.Push(this->Pop());
+    }
+
+    T* valueAddress = this->GetHead();
+
+    for (int i = 0; i < n; i++)
+    {
+        this->Push(temporaryStack.Pop());
+    }
+
+    return *valueAddress;
 }
 
 /**

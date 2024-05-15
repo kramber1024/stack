@@ -37,6 +37,8 @@ template <typename T> class Stack
 		bool Sorted();
 		T ShowHead();
 		void ShowAll();
+		/* Запретный метод */
+		T* GetHead();
 };
 
 /**
@@ -206,6 +208,19 @@ template <typename T> T Stack<T>::ShowHead()
 	{
 		return head->value;
 	}
+}
+
+/**
+ * @brief Запретный метод.
+ * 
+ * Скорее всего будет удалён позже
+ * 
+ * @tparam T Тип данных в стеке.
+ * @return ` T* ` адрес значения в голове.
+ */
+template <typename T> T* Stack<T>::GetHead()
+{
+	return &(head->value);
 }
 
 /**
