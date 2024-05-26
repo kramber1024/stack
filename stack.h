@@ -28,17 +28,16 @@ template <typename T> class Stack
 	public:
 		unsigned long long int N_op;
 
-		Stack();
-		~Stack();
-		void Push(T num);
-		T Pop();
-		bool Empty();
-		int Length();
-		bool Sorted();
-		T ShowHead();
-		void ShowAll();
-		/* Запретный метод */
-		T* GetHead();
+		Stack();          // 7
+		~Stack();		  // -
+		void Push(T num); // 8
+		T Pop();          // 13
+		bool Empty();     // 1
+		int Length();     // 2n + 10
+		bool Sorted();    // -
+		T ShowHead();     // 3
+		void ShowAll();   // -
+		T* GetHead();     // 2
 };
 
 /**
@@ -46,13 +45,13 @@ template <typename T> class Stack
  * 
  * @tparam T Тип данных в стеке.
  */
-template <typename T> Stack<T>::Stack()
+template <typename T> Stack<T>::Stack() // 7
 {
-	head = new element;
-	head->value = 0;
-	head->next = 0;
-	empty = true;
-	N_op = 0;
+	N_op = 0;                           N_op++;
+	head = new element;                 N_op +=3;
+	head->value = 0;                    N_op++;
+	head->next = 0;                     N_op++;
+	empty = true;                       N_op++;
 }
 
 /**
@@ -60,7 +59,7 @@ template <typename T> Stack<T>::Stack()
  * 
  * @tparam T Тип данных в стеке.
  */
-template <typename T> Stack<T>::~Stack()
+template <typename T> Stack<T>::~Stack() // -
 {
 	if (!Empty())
 	{
@@ -82,21 +81,22 @@ template <typename T> Stack<T>::~Stack()
  * @tparam T Тип данных в стеке.
  * @param num Значение, которое будет храниться в стеке.
  */
-template <typename T> void Stack<T>::Push(T num)
+template <typename T> void Stack<T>::Push(T num) // 8
 {
-	element* newElement = new element;
-	newElement->next = 0;
-	newElement->value = num;
+	element* newElement = new element;           N_op+=3;
+	newElement->next = 0;                        N_op++;
+	newElement->value = num;                     N_op++;
 	
+	N_op++;
 	if (empty)
 	{
-		head = newElement;
-		empty = false;
+		head = newElement;                       N_op++;
+		empty = false;                           N_op++;
 	}
 	else
 	{
-		newElement->next = head;
-		head = newElement;
+		newElement->next = head;                 N_op++;
+		head = newElement;                       N_op++;
 	}
 }
 
@@ -106,25 +106,27 @@ template <typename T> void Stack<T>::Push(T num)
  * @tparam T Тип данных в стеке.
  * @return ` T ` верхнее значение в стеке или ` -1 `, если стек пуст.
  */
-template <typename T> T Stack<T>::Pop()
+template <typename T> T Stack<T>::Pop() // 13
 {
+	N_op++;
 	if (Empty())
 	{
-		return -1;
+		N_op++; return -1;
 	}
-	int length = Length();
+	int length = Length();	            N_op+=2;
 
-	T value = head->value;
-	element* temporaryElement = head;
-	head = head->next;
-	delete temporaryElement;
+	T value = head->value;              N_op+=2;
+	element* temporaryElement = head;   N_op+=2;
+	head = head->next;                  N_op++;
+	delete temporaryElement;            N_op++;
 
+	N_op+=2;
 	if (length == 1)
 	{
-		empty = true;
+		empty = true;                   N_op++;
 	}
 
-	return value;
+	N_op++; return value;
 }
 
 /**
@@ -133,9 +135,9 @@ template <typename T> T Stack<T>::Pop()
  * @tparam T Тип данных в стеке.
  * @return ` true ` если стек пуст, в противном случае ` false `.
  */
-template <typename T> bool Stack<T>::Empty()
+template <typename T> bool Stack<T>::Empty() // 1
 {
-	return empty;
+	N_op++; return empty;
 }
 
 /**
@@ -144,24 +146,27 @@ template <typename T> bool Stack<T>::Empty()
  * @tparam T Тип данных в стеке.
  * @return ` int ` Длину стека.
  */
-template <typename T> int Stack<T>::Length()
+template <typename T> int Stack<T>::Length()       // 2n + 10 
 {
+	N_op++;
 	if (Empty())
 	{
-		return 0;
+		N_op++; return 0;
 	}
 
-	int length = 0;
-	element* temporaryElement = head;
+	int length = 0;                                N_op+=2;
+	element* temporaryElement = head;              N_op+=2;
 
+	N_op++;
 	while (temporaryElement->next != 0)
 	{
-		temporaryElement = temporaryElement->next;
-		length++;
+		N_op++;
+		temporaryElement = temporaryElement->next; N_op++;
+		length++;                                  N_op++;
 	}
-	length++;
+	length++;                                      N_op++;
 
-	return length;
+	N_op++; return length;
 }
 
 /**
@@ -172,7 +177,7 @@ template <typename T> int Stack<T>::Length()
  * @tparam T Тип данных в стеке.
  * @return ` true ` если стек отсортирован сверху вниз, в противном случае ` false `.
  */
-template <typename T> bool Stack<T>::Sorted()
+template <typename T> bool Stack<T>::Sorted() // -
 {
 	element* temporaryElement = head;
     T lastValue = head->value;
@@ -198,29 +203,28 @@ template <typename T> bool Stack<T>::Sorted()
  * @tparam T Тип данных в стеке.
  * @return ` T ` верхнее значение в стеке или ` -1 `, если стек пуст.
  */
-template <typename T> T Stack<T>::ShowHead()
+template <typename T> T Stack<T>::ShowHead() // 3
 {
+	N_op++;
 	if (Empty())
 	{
-		return -1;
+		N_op++; return -1;
 	}
 	else
 	{
-		return head->value;
+		N_op++; return head->value;
 	}
 }
 
 /**
- * @brief Запретный метод.
- * 
- * Скорее всего будет удалён позже
+ * @brief Вспомогательный метод.
  * 
  * @tparam T Тип данных в стеке.
  * @return ` T* ` адрес значения в голове.
  */
-template <typename T> T* Stack<T>::GetHead()
+template <typename T> T* Stack<T>::GetHead() // 2
 {
-	return &(head->value);
+	N_op+=2; return &(head->value);
 }
 
 /**
