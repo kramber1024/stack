@@ -27,16 +27,16 @@ template <typename T> class Stack
 	public:
 		unsigned long long int N_op;
 
-		Stack();          // 
+		Stack();          // 1
 		~Stack();		  // -
-		void Push(T num); // 
-        T Pop();          // 
-        bool Empty();     // 
-		int Length();     // 
+		void Push(T num); // 5
+        T Pop();          // 10 
+        bool Empty();     // 2
+		int Length();     // 2n + 10
+		T ShowHead();     // 4
+		T* GetHead();     // 2
 		bool Sorted();    // -
-		T ShowHead();     // 
 		void ShowAll();   // -
-		T* GetHead();     // 
 };
 
 /**
@@ -44,10 +44,10 @@ template <typename T> class Stack
  * 
  * @tparam T Тип данных в стеке.
  */
-template <typename T> Stack<T>::Stack() // 
+template <typename T> Stack<T>::Stack() // 1
 {
 	N_op = 0;
-	head = nullptr;
+	head = nullptr;                     N_op++;
 }
 
 /**
@@ -77,12 +77,12 @@ template <typename T> Stack<T>::~Stack() // -
  * @tparam T Тип данных в стеке.
  * @param num Значение, которое будет храниться в стеке.
  */
-template <typename T> void Stack<T>::Push(T num) // 
+template <typename T> void Stack<T>::Push(T num) // 5
 {
-	element* newElement = new element;
-	newElement->value = num;
-	newElement->next = head;
-	head = newElement;
+	element* newElement = new element;           N_op+=2;
+	newElement->value = num;                     N_op++;
+	newElement->next = head;                     N_op++;
+	head = newElement;                           N_op++;
 }
 
 /**
@@ -91,19 +91,20 @@ template <typename T> void Stack<T>::Push(T num) //
  * @tparam T Тип данных в стеке.
  * @return ` T ` верхнее значение в стеке или ` T `, если стек пуст.
  */
-template <typename T> T Stack<T>::Pop() // 
+template <typename T> T Stack<T>::Pop() // 10
 {
-	if (Empty())
+	N_op++;
+	if (Empty())           
 	{
-		return T();
+		N_op++; return T();
 	}
 
-	T value = head->value;
-	element* temporaryElement = head;
-	head = head->next;
-	delete temporaryElement;
+	T value = head->value;              N_op+=2;
+	element* temporaryElement = head;   N_op+=2;
+	head = head->next;                  N_op++;
+	delete temporaryElement;            N_op++;
 
-	return value;
+	N_op++; return value;
 }
 
 /**
@@ -114,7 +115,7 @@ template <typename T> T Stack<T>::Pop() //
  */
 template <typename T> bool Stack<T>::Empty() // 2
 {
-	return head == nullptr;                  // +1 +1
+	N_op+=2; return head == nullptr;
 }
 
 /**
@@ -123,23 +124,26 @@ template <typename T> bool Stack<T>::Empty() // 2
  * @tparam T Тип данных в стеке.
  * @return ` int ` Длину стека.
  */
-template <typename T> int Stack<T>::Length()       // 2n + 10 
+template <typename T> int Stack<T>::Length()       // 2n + 10
 {
+	N_op++;
 	if (Empty())
 	{
-		return 0;
+		N_op++; return 0;
 	}
 
-	int length = 0;                                
-	element* temporaryElement = head;              
+	int length = 0;                                N_op+=2;
+	element* temporaryElement = head;              N_op+=2;
 
+	N_op++;
 	while (temporaryElement != nullptr)
 	{
-		length++;                                  
-		temporaryElement = temporaryElement->next; 
+		N_op++;
+		length++;                                  N_op++;
+		temporaryElement = temporaryElement->next; N_op++;
 	}
 
-	return length;
+	N_op++; return length;
 }
 
 /**
@@ -180,15 +184,16 @@ template <typename T> bool Stack<T>::Sorted() // -
  * @tparam T Тип данных в стеке.
  * @return ` T ` верхнее значение в стеке или ` T `, если стек пуст.
  */
-template <typename T> T Stack<T>::ShowHead() // 
+template <typename T> T Stack<T>::ShowHead() // 4
 {
+	N_op++;
 	if (Empty())
 	{
-		return T();
+		N_op++; return T();
 	}
 	else
 	{
-		return head->value;
+		N_op++; return head->value;
 	}
 }
 
@@ -200,7 +205,7 @@ template <typename T> T Stack<T>::ShowHead() //
  */
 template <typename T> T* Stack<T>::GetHead() // 2
 {
-	return &(head->value);
+	N_op+=2; return &(head->value);
 }
 
 /**
@@ -210,7 +215,7 @@ template <typename T> T* Stack<T>::GetHead() // 2
  * 
  * @tparam T Тип данных в стеке.
  */
-template <typename T> void Stack<T>::ShowAll()
+template <typename T> void Stack<T>::ShowAll() // -
 {
 	if (Empty())
 	{
