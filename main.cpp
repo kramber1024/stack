@@ -31,7 +31,7 @@ void simple_test()
 
     for (int i = 0; i < n; i++)
     {
-        int x = rand() % 101;
+        int x = rand() % 10001;
         stack.Push(x);
     }
 
@@ -39,7 +39,7 @@ void simple_test()
     stack.ShowAll();
     cout << boolalpha << "sorted: " << stack.Sorted() << endl;
 
-    stack.Sort(stack.Length());
+    stack.Sort(n);
 
     cout << "after: ";
     stack.ShowAll();
@@ -73,8 +73,10 @@ void full_test()
 
 int main()
 {
-    simple_test();
-    full_test();
+    //simple_test();
+    //full_test();
+
+    MyStack<int> stack;
 
     return 0;
 }
