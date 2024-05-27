@@ -31,7 +31,7 @@ void simple_test()
 
     for (int i = 0; i < n; i++)
     {
-        int x = rand() % 10001;
+        int x = rand() % 101;
         stack.Push(x);
     }
 
@@ -56,7 +56,7 @@ void full_test()
 
         for (j = 0; j < i * 100; j++)
         {
-            stack.Push(rand() % 1001);
+            stack.Push(rand() % 10001);
         }
 
         t_s = GetTickCount64();
@@ -73,10 +73,8 @@ void full_test()
 
 int main()
 {
-    //simple_test();
-    //full_test();
-
-    MyStack<int> stack;
+    simple_test();
+    full_test();
 
     return 0;
 }
