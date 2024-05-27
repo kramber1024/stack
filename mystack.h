@@ -12,10 +12,10 @@
 template <typename T> class MyStack : public Stack<T>
 {
     public:
-        T Get(int pos);           // 
-        void Set(int pos, T num); // 
-        void Sort(int n);         // TODO
-        T& operator[](int n);     // 
+        T Get(int pos);           // 35n + 26
+        void Set(int pos, T num); // 35n + 34
+        T& operator[](int n);     // 35n + 25
+        void Sort(int n);         // -
 };
 
 /**
@@ -29,22 +29,27 @@ template <typename T> class MyStack : public Stack<T>
  * @param pos Позиция, с которой будет читаться значение.
  * @return T Значение, находящиеся на позиции.
  */
-template <typename T> T MyStack<T>::Get(int pos) // 
+template <typename T> T MyStack<T>::Get(int pos) // 35n + 26
 {
-    Stack<T> temporaryStack;
+    Stack<T> temporaryStack;                     this->N_op++;
 
+    this->N_op+=3;
     for (int i = 0; i < pos; i++)
     {
+        this->N_op+=2;
         temporaryStack.Push(this->Pop());
     }
 
-    T result = this->ShowHead();
+    T result = this->ShowHead();                 this->N_op+=2;
 
+    this->N_op+=3;
     for (int i = 0; i < pos; i++)
     {
+        this->N_op+=2;
         this->Push(temporaryStack.Pop());
     }
 
+    this->N_op+=temporaryStack.N_op+1;
     return result;
 }
 
@@ -59,40 +64,50 @@ template <typename T> T MyStack<T>::Get(int pos) //
  * @param pos Позиция, на которой будет изменено значение.
  * @param num Новое значение.
  */
-template <typename T> void MyStack<T>::Set(int pos, T num) // 
+template <typename T> void MyStack<T>::Set(int pos, T num) // 35n + 34
 {
-    Stack<T> temporaryStack;
+    Stack<T> temporaryStack;                               this->N_op++;
 
+    this->N_op+=3;
     for (int i = 0; i < pos; i++)
     {
+        this->N_op+=2;
         temporaryStack.Push(this->Pop());
     }
 
     this->Pop();
     this->Push(num);
 
+    this->N_op+=3;
     for (int i = 0; i < pos; i++)
     {
+        this->N_op+=2;
         this->Push(temporaryStack.Pop());
     }
+    this->N_op+=temporaryStack.N_op;
 }
 
-template <typename T> T& MyStack<T>::operator[](int n) // 
+template <typename T> T& MyStack<T>::operator[](int n) // 35n + 25
 {
-    Stack<T> temporaryStack;
+    Stack<T> temporaryStack;                           this->N_op+=2;
 
+    this->N_op+=3;
     for (int i = 0; i < n; i++)
     {
+        this->N_op+=2;
         temporaryStack.Push(this->Pop());
     }
 
-    T* valueAddress = this->GetHead();
+    T* valueAddress = this->GetHead();                 this->N_op+=2;
 
+    this->N_op+=3;
     for (int i = 0; i < n; i++)
     {
+        this->N_op+=2;
         this->Push(temporaryStack.Pop());
     }
 
+    this->N_op+=temporaryStack.N_op+2;
     return *valueAddress;
 }
 
@@ -104,7 +119,7 @@ template <typename T> T& MyStack<T>::operator[](int n) //
  * @tparam T Тип данных в стеке.
  * @param n Длина стека. Необходим для асимптотической оценка алгоритма.
  */
-template <typename T> void MyStack<T>::Sort(int n) // TODO                  
+template <typename T> void MyStack<T>::Sort(int n) // -                  
 {
     for (int gap = n / 2; gap > 0; gap /= 2)
     {
