@@ -75,6 +75,8 @@ int main()
 {
     simple_test();
     full_test();
+    
+    system("pause");
 
     return 0;
 }
