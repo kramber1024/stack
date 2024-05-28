@@ -15,7 +15,7 @@ template <typename T> class MyStack : public Stack<T>
         T Get(int pos);           // 35n + 26
         void Set(int pos, T num); // 35n + 34
         T& operator[](int n);     // 35n + 25
-        void Sort(int n);         // -
+        void Sort(int n);         // n^2
 };
 
 /**
@@ -119,17 +119,22 @@ template <typename T> T& MyStack<T>::operator[](int n) // 35n + 25
  * @tparam T Тип данных в стеке.
  * @param n Длина стека. Необходим для асимптотической оценка алгоритма.
  */
-template <typename T> void MyStack<T>::Sort(int n) // -                  
+template <typename T> void MyStack<T>::Sort(int n) // n^2                  
 {
+    this->N_op+=3;
     for (int gap = n / 2; gap > 0; gap /= 2)
     {
+        this->N_op+=5;
         for (int i = gap; i < n; i += 1)
         {
-            int j;
-            T temp = Get(i);
+            this->N_op+=2;
+            int j;                                                 this->N_op++;
+            T temp = Get(i);                                       this->N_op+=2;
 
+            this->N_op+=5;
             for (j = i; j >= gap && Get(j - gap) > temp; j -= gap)
             {
+                this->N_op+=5;
                 Set(j, Get(j - gap));
             }                
 
