@@ -1,2 +1,17 @@
-# stack
-Стек, написанный на c++ для предмета "Алгоритмы и структуры данных". Курс №1, семестр №2.
+# Stack
+
+My implementation of a linear list (Stack) sorting algorithm.
+
+## Installation
+
+
+
+## Usage
+
+
+
+## Features
+
+
+
+## Screenshot
