@@ -2,15 +2,32 @@
 
 #include <iostream>
 
-using std::cout; using std::endl;
+using std::cout, std::endl;
 
+/**
+ * @brief A template class representing a Stack data structure implemented using a linked list.
+ *
+ * This class provides the functionality to store and manipulate elements in a stack.
+ * The stack follows the LIFO principle.
+ * 
+ * The stack is implemented using a linked list, where each element in the stack
+ * is represented by a element containing the value and a pointer to the next element.
+ * The head pointer points to the top of the stack.
+ *
+ * @tparam T The type of elements stored in the stack.
+ */
 template <typename T> class Stack
 {
 private:
+	/**
+	 * @brief Represents an element in a stack.
+	 *
+	 * This struct holds the value of the element and a pointer to the next element in the stack.
+	 */
 	struct element 
 	{
-		T value;
-		element* next;
+		T value; /** The value of the element. */
+		element* next; /** Pointer to the next element in the stack. */
 	};
 	element* head;
 
@@ -29,14 +46,28 @@ public:
 	void ShowAll();   // -
 };
 
-
+/**
+ * @brief Constructs an empty Stack object.
+ *
+ * This constructor initializes the Stack object by setting the number of operations (N_op) to 0
+ * and the head pointer to nullptr.
+ * 
+ * @tparam T The type of elements stored in the Stack.
+ */
 template <typename T> Stack<T>::Stack() // 1
 {
 	N_op = 0;
 	head = nullptr;                     N_op++;
 }
 
-
+/**
+ * @brief Destructor for the Stack class.
+ * 
+ * This destructor is responsible for deallocating the memory used by the Stack.
+ * It iterates through the linked list and deletes each element.
+ * 
+ * @tparam T The type of elements stored in the Stack.
+ */
 template <typename T> Stack<T>::~Stack() // -
 {
 	if (!Empty())
@@ -53,7 +84,15 @@ template <typename T> Stack<T>::~Stack() // -
 	delete head;
 }
 
-
+/**
+ * @brief Pushes a new element onto the stack.
+ * 
+ * This method creates a new element and adds it to the top of the stack.
+ * The value of the new element is set to the given number.
+ * 
+ * @tparam T The type of elements stored in the stack.
+ * @param num The number to be added to the stack.
+ */
 template <typename T> void Stack<T>::Push(T num) // 5
 {
 	element* newElement = new element;           N_op+=2;
@@ -63,6 +102,15 @@ template <typename T> void Stack<T>::Push(T num) // 5
 }
 
 
+/**
+ * @brief Removes and returns the top element from the stack.
+ * 
+ * This method removes and returns the top element from the stack.
+ * If the stack is empty, it returns a default-constructed object of type T.
+ * 
+ * @tparam T The type of elements stored in the stack.
+ * @return T The top element of the stack.
+ */
 template <typename T> T Stack<T>::Pop() // 10
 {
 	N_op++;
@@ -79,14 +127,31 @@ template <typename T> T Stack<T>::Pop() // 10
 	N_op++; return value;
 }
 
-
+/**
+ * @brief Returns whether the stack is empty or not.
+ * 
+ * This method check if head is nullptr.
+ * If it is, the stack is empty and the method returns true.
+ * 
+ * @tparam T The type of elements stored in the stack.
+ * @return int The number of elements in the stack.
+ */
 template <typename T> bool Stack<T>::Empty() // 2
 {
 	N_op+=2; return head == nullptr;
 }
 
-
-template <typename T> int Stack<T>::Length()       // 2n + 10
+/**
+ * @brief Returns the number of elements in the stack.
+ * 
+ * This method counts the number of elements in the stack by iterating through
+ * the linked list and incrementing a counter for each element encountered.
+ * If the stack is empty, it returns 0.
+ * 
+ * @tparam T The type of elements stored in the stack.
+ * @return int The number of elements in the stack.
+ */
+template <typename T> int Stack<T>::Length() // 2n + 10
 {
 	N_op++;
 	if (Empty())
@@ -108,7 +173,17 @@ template <typename T> int Stack<T>::Length()       // 2n + 10
 	N_op++; return length;
 }
 
-
+/**
+ * @brief Checks if the elements in the stack are sorted in ascending order.
+ * 
+ * This method iterates through the elements in the stack and compares each element
+ * with the next element. If any element is greater than the next element, the stack
+ * is considered unsorted and the method returns false. If all elements are in ascending
+ * order or the stack is empty, the method returns true.
+ * 
+ * @tparam T The type of elements stored in the stack.
+ * @return true if the elements are sorted in ascending order or the stack is empty, false otherwise.
+ */
 template <typename T> bool Stack<T>::Sorted() // -
 {
 	if (Empty()) {
@@ -140,7 +215,7 @@ template <typename T> bool Stack<T>::Sorted() // -
  * @tparam T The type of elements stored in the stack.
  * @return T The value stored in the head element of the stack.
  */
-template <typename T> T Stack<T>::ShowHead()
+template <typename T> T Stack<T>::ShowHead() // 4
 {
 	N_op++;
 	if (Empty())
@@ -157,13 +232,13 @@ template <typename T> T Stack<T>::ShowHead()
  * @brief Returns a pointer to the value stored in the head element of the stack.
  * 
  * This method returns a pointer to the value stored in the head element of the stack.
- * This method is used for overloading operator[].
  * If the stack is empty, it returns a nullptr.
+ * This method is used for overloading operator[].
  * 
  * @tparam T The type of elements stored in the stack.
  * @return T* A pointer to the value stored in the head element of the stack.
  */
-template <typename T> T* Stack<T>::GetHead()
+template <typename T> T* Stack<T>::GetHead() // 2
 {
 	N_op += 2; return &(head->value);
 }
@@ -176,7 +251,7 @@ template <typename T> T* Stack<T>::GetHead()
  * 
  * @tparam T The type of elements stored in the stack.
  */
-template <typename T> void Stack<T>::ShowAll()
+template <typename T> void Stack<T>::ShowAll() // -
 {
 	if (Empty())
 	{
