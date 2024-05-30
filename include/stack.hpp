@@ -5,6 +5,7 @@
 using std::cout, std::endl;
 
 /**
+ * @class Stack
  * @brief A template class representing a Stack data structure implemented using a linked list.
  *
  * This class provides the functionality to store and manipulate elements in a stack.
@@ -101,7 +102,6 @@ template <typename T> void Stack<T>::Push(T num) // 5
 	head = newElement;                           N_op++;
 }
 
-
 /**
  * @brief Removes and returns the top element from the stack.
  * 
@@ -114,7 +114,7 @@ template <typename T> void Stack<T>::Push(T num) // 5
 template <typename T> T Stack<T>::Pop() // 10
 {
 	N_op++;
-	if (Empty())           
+	if (Empty())
 	{
 		N_op++; return T();
 	}
@@ -191,7 +191,7 @@ template <typename T> bool Stack<T>::Sorted() // -
 	}
 	
 	element* temporaryElement = head;
-    T lastValue = head->value;
+	T lastValue = head->value;
 
 	while (temporaryElement->next != 0)
 	{
