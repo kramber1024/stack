@@ -1,5 +1,20 @@
-﻿add_executable (stack "main.cpp" "mystack.h" "stack.h")
+﻿cmake_minimum_required(VERSION 3.15)
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET stack PROPERTY CXX_STANDARD 20)
-endif()
+#
+# Project details
+#
+project(
+  "Stack"
+  VERSION 0.1.0
+  LANGUAGES CXX
+)
+
+# Set C++ standard to C++17
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+include_directories("include")
+
+set(SOURCES "src/main.cpp" "include/mystack.hpp" "include/stack.hpp")
+
+add_executable(${PROJECT_NAME} ${SOURCES})
