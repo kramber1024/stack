@@ -1,25 +1,9 @@
 ﻿#include <iostream>
 #include <string>
 #include <windows.h>
-#include "mystack.h"
+#include "include/mystack.hpp"
 
 using std::cin, std::cout, std::endl, std::boolalpha, std::string, std::to_string;
-
-string formatNumber(unsigned long long int num) {
-    const long long THOUSAND = 1000;
-    const long long MILLION = 1000000;
-    const long long BILLION = 1000000000;
-
-    if (num >= BILLION) {
-        return "(" + to_string(num / BILLION) + "B" + ")";
-    } else if (num >= MILLION) {
-        return "(" + to_string(num / MILLION) + "M" + ")";
-    } else if (num >= THOUSAND) {
-        return "(" + to_string(num / THOUSAND) + "K" + ")";
-    } else {
-        return "";
-    }
-}
 
 void simple_test()
 {
@@ -66,7 +50,7 @@ void full_test()
         cout << "sort #" << i << "\n";
         cout << "number of elements: " << i * 100 << "\n";
         cout << "sort time (ms): " << t_f - t_s << "\n";
-        cout << "number of operations: " << stack.N_op << " " << formatNumber(stack.N_op) << "\n";
+        cout << "number of operations: " << stack.N_op << "\n";
         cout << endl;
     }
 }
