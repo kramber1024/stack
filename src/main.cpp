@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <windows.h>
-#include "include/mystack.hpp"
+#include "mystack.hpp"
 
 using std::cin, std::cout, std::endl, std::boolalpha, std::string, std::to_string;
 
